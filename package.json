@@ -1,0 +1,15 @@
+{
+  "name" : "base-mysql-mydumper",
+  "version" : "2.0.2",
+  "description" : "Base image for mysql mydumper backup and restore tool. Generation 1.4 is including an updated mydumper with support for stored procedures and functions",
+  "keywords" : [ "mysql", "backup", "dropbox" ],
+  "author" : {
+    "name" : "Björn Kjeholt",
+    "email" : "dev@kjeholt.se",
+    "url" : "http://www-dev.kjeholt.se"
+  },
+  "bugs" : {
+    "url" : "null"
+  },
+  "main" : "./"
+}
