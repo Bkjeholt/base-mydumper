@@ -60,7 +60,7 @@ ONBUILD RUN chmod -f 755 /usr/local/bin/*
 # Set container settings.
 #
 
-# VOLUME ["/backup"]
+ONBUILD VOLUME ["/backup"]
 WORKDIR /backup
 
 #
