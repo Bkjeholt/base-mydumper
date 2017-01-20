@@ -1,0 +1,70 @@
+# ************************************************************************
+# Product    : Home information and control
+# Date       : 2017-01-20
+# Copyright  : Copyright (C) 2016-2017 Kjeholt Engineering. All rights reserved.
+# Contact    : dev@kjeholt.se
+# Url        : http://www-dev.kjeholt.se
+# Licence    : ---
+# -------------------------------------------------------------------------
+# File       : base-mydumper/Dockerfile-x86
+# Version    : 2.1.0
+# Author     : Bjorn Kjeholt
+# *************************************************************************
+ FROM debian:jessie
+
+MAINTAINER Björn Kjeholt <dev@kjeholt.se>
+
+#
+# Install required packages.
+#
+
+RUN apt-get -y update && \
+    apt-get -y install  curl \
+                        cmake \
+                        make \
+                        gcc \
+                        g++ \
+                        libglib2.0-dev \
+                        libmysqlclient15-dev \
+                        zlib1g-dev \
+                        libpcre3-dev \
+                        libssl-dev && \
+    mkdir -p /usr/local/src/ && \
+    mkdir -p /usr/local/bin/ && \
+    mkdir -p /etc/ && \
+    mkdir -p /backup/files
+
+COPY Source /usr/local/src
+WORKDIR /usr/local/src/mydumper
+
+RUN cmake . && \
+    make && \
+    mv mydumper myloader ../../bin && \
+    rm -fr * && \
+    apt-get -y remove  cmake \
+                       make \
+                       gcc \
+                       g++ && \
+    apt-get -y autoremove && \
+    rm -rf /var/lib/apt/lists/*
+
+#
+# Install start script.
+#
+
+ONBUILD COPY Scripts /usr/local/bin/
+
+ONBUILD RUN chmod -f 755 /usr/local/bin/* 
+
+#
+# Set container settings.
+#
+
+# VOLUME ["/backup"]
+WORKDIR /backup
+
+#
+# Start process.
+#
+
+ONBUILD CMD ["/usr/local/bin/execute.sh"]
