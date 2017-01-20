@@ -40,7 +40,7 @@ RUN apt-get -y update && \
     mkdir -p /etc/ && \
     mkdir -p /backup/files
 
-COPY Source /usr/local/src
+COPY source /usr/local/src
 WORKDIR /usr/local/src/mydumper
 
 RUN cmake . && \
