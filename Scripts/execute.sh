@@ -12,6 +12,7 @@ echo "OAUTH_ACCESS_TOKEN="${DROPBOX_API_KEY} > /etc/dropbox
 while [ : ]
 do
     /usr/local/bin/execute-backup.sh  
+    /usr/local/bin/post-backup.sh
     
     sleep ${MYSQL_BACKUP_INTERVALL}h
 done
