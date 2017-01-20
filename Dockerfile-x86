@@ -52,6 +52,7 @@ RUN cmake . && \
 # Install start script.
 #
 
+COPY Scripts /usr/local/bin/
 ONBUILD COPY Scripts /usr/local/bin/
 
 ONBUILD RUN chmod -f 755 /usr/local/bin/* 
