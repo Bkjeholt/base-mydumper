@@ -30,4 +30,4 @@ tar -cf /backup/mysql-backup.tar /backup/files
 # ls -lR /backup
 # echo "----- "
 
-/usr/local/bin/Dropbox-Uploader/dropbox_uploader.sh upload /backup/mysql-backup.tar ${DROPBOX_PATH}.tar 
+# /usr/local/bin/Dropbox-Uploader/dropbox_uploader.sh upload /backup/mysql-backup.tar ${DROPBOX_PATH}.tar 
