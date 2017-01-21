@@ -6,8 +6,7 @@ echo "-- Mysql server: ${MYSQL_IP_ADDR}:${MYSQL_PORT_NO} "
 echo "------------------------------------------------------------------------"
 ls -lR /usr/local/bin
 
-echo "OAUTH_ACCESS_TOKEN="${DROPBOX_API_KEY} > /etc/dropbox
-
+/usr/local/bin/init-backup.sh
 
 while [ : ]
 do
