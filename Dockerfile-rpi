@@ -14,12 +14,6 @@
 
 MAINTAINER Björn Kjeholt <dev@kjeholt.se>
 
-ARG DOCKER_IMAGE_NAME
-ARG DOCKER_IMAGE_TAG
-
-ENV DOCKER_BASE_IMAGE_NAME ${DOCKER_IMAGE_NAME:-UnknownName}
-ENV DOCKER_BASE_IMAGE_TAG ${DOCKER_IMAGE_TAG:-UnknownRevision}
-
 #
 # Install required packages.
 #
@@ -58,6 +52,13 @@ RUN cmake . && \
 # Install start script.
 #
 
+ARG DOCKER_IMAGE_NAME
+ARG DOCKER_IMAGE_TAG
+
+ENV DOCKER_BASE_IMAGE_NAME ${DOCKER_IMAGE_NAME:-UnknownName}
+ENV DOCKER_BASE_IMAGE_TAG ${DOCKER_IMAGE_TAG:-UnknownRevision}
+
+COPY Scripts /usr/local/bin/
 ONBUILD COPY Scripts /usr/local/bin/
 
 ONBUILD RUN chmod -f 755 /usr/local/bin/* 
@@ -66,7 +67,7 @@ ONBUILD RUN chmod -f 755 /usr/local/bin/*
 # Set container settings.
 #
 
-# VOLUME ["/backup"]
+VOLUME ["/backup"]
 WORKDIR /backup
 
 #
